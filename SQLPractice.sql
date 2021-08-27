@@ -3,6 +3,7 @@ SQL Practice Problems by Sylvia Moestl Vasilik PDF
 DB: NORTHWND
 */
 
+/********************Intro Problems********************/
 
 /*** We have a table called Shippers. Return all the fields from all the shippers ***/
 Select * from shippers;
@@ -124,17 +125,53 @@ inner join Shippers as s
 where OrderID < 10300
 order by OrderID
 
+/********************Intermediate Problems********************/
+
 /*** 
 #20 For this problem, we’d like to see the total number of products in each category. Sort the results by the total
 number of products, in descending order.
 ***/
+select CategoryName
+	,count(productname) as ProductName
+from Products as p
+inner join Categories as c
+	on p.CategoryID = c.CategoryID
+group by c.CategoryName
+order by 2 desc
+
+/*** 
+#21 In the Customers table, show the total number of
+customers per Country and City 
+***/
+select Country
+	,city
+	,count(customerid) as TotalCustomers
+from Customers
+group by country, City
+order by 3 desc
+
+/*** 
+#22 What products do we have in our inventory that should be reordered? For now, just use the fields
+UnitsInStock and ReorderLevel, where UnitsInStock is less than the ReorderLevel, ignoring the fields
+UnitsOnOrder and Discontinued.Order the results by ProductID.
+***/
+select productid
+	,productname
+	,unitsinstock
+	,reorderlevel
+from  Products
+where UnitsInStock < ReorderLevel
+
+/***
+Now we need to incorporate these fields—UnitsInStock, UnitsOnOrder, ReorderLevel,Discontinued—into our calculation. We’ll define
+“products that need reordering” with the following:
+UnitsInStock plus UnitsOnOrder are less than
+or equal to ReorderLevel
+The Discontinued flag is false (0).
+***/
 
 
 
-
-/***  ***/
-/***  ***/
-/***  ***/
 /***  ***/
 /***  ***/
 /***  ***/
