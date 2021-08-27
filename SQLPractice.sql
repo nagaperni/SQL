@@ -105,17 +105,33 @@ This question will introduce what may be a new concept, the Join clause in SQL. 
 Here’s a data model of the relationship between Products and Suppliers. ***/
 select ProductID
 	,ProductName
-	,CompanyName
+	,CompanyName 
 from Products p
 join Suppliers s 
 	on p.SupplierID = s.SupplierID
 order by ProductID;
 
-/*** We’d like to show a list of the Orders that were made, including the Shipper that was used. Show the OrderID, OrderDate (date only), and CompanyNameof the Shipper, and sort 
-by OrderID. In order to not show all the orders (there’s more than800), show only those rows with an OrderID of less than 10300. ***/
+/*** We’d like to show a list of the Orders that were made, including the Shipper that was used. Show the OrderID, 
+OrderDate (date only), and CompanyNameof the Shipper, and sort by OrderID. In order to not show all the orders 
+(there’s more than800), show only those rows with an OrderID of less than 10300. ***/
+
+select OrderID
+	,cast(orderdate as date) Orderdate
+	,CompanyName as Shippername
+from Orders as o
+inner join Shippers as s
+	on o.ShipVia = s.ShipperID
+where OrderID < 10300
+order by OrderID
+
+/*** 
+#20 For this problem, we’d like to see the total number of products in each category. Sort the results by the total
+number of products, in descending order.
+***/
 
 
-/***  ***/
+
+
 /***  ***/
 /***  ***/
 /***  ***/
