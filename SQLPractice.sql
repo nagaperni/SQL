@@ -163,7 +163,7 @@ from  Products
 where UnitsInStock < ReorderLevel
 
 /***
-Now we need to incorporate these fields—UnitsInStock, UnitsOnOrder, ReorderLevel,Discontinued—into our calculation. We’ll define
+#23 Now we need to incorporate these fields—UnitsInStock, UnitsOnOrder, ReorderLevel,Discontinued—into our calculation. We’ll define
 “products that need reordering” with the following:
 UnitsInStock plus UnitsOnOrder are less than
 or equal to ReorderLevel
